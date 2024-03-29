@@ -38,7 +38,7 @@ export default function PostListItem({ post }: PostListItemProps) {
         </View>
         </Link>
 
-        {/* {Text content} */}
+        {/* {Text content test} */}
         <Text style={styles.content}>{post.content}</Text>
 
         {/* {Image content} */}
