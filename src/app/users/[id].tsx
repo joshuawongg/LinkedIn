@@ -1,44 +1,49 @@
-import { Text, View, Image, StyleSheet, Pressable } from "react-native";
+import {
+  Text,
+  View,
+  Image,
+  StyleSheet,
+  Pressable,
+  ScrollView,
+} from "react-native";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import userJson from "../../../assets/data/user.json";
 import { useLayoutEffect, useState } from "react";
 import { User } from "@/types";
+import ExperienceListItem from "@/components/ExperienceListItem";
 
 export default function UserProfile() {
   const [user, setUser] = useState<User>(userJson);
 
   const { id } = useLocalSearchParams();
-  const navigation = useNavigation(); 
-
+  const navigation = useNavigation();
 
   const onConnect = () => {
-    console.warn("Connect Press")
-  }
+    console.warn("Connect Press");
+  };
 
   useLayoutEffect(() => {
-    navigation.setOptions({title: user.name })
-  }, [user?.name])
-
-  
+    navigation.setOptions({ title: user.name });
+  }, [user?.name]);
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       {/* { Header } */}
       <View style={styles.header}>
         {/* { BG Image } */}
-        <Image source={{ uri: user.backImage }} style={styles.backImage}/>
-    <View style={styles.headerContent}>
-        {/* { Profile Image } */}
-        <Image source={{ uri: user.image }} style={styles.image}/>
+        <Image source={{ uri: user.backImage }} style={styles.backImage} />
+        <View style={styles.headerContent}>
+          {/* { Profile Image } */}
+          <Image source={{ uri: user.image }} style={styles.image} />
 
-        {/* { Name and Position } */}
-        <Text style={styles.name}>{user.name}</Text>
-        <Text style={styles.position}>{user.position}</Text>
+          {/* { Name and Position } */}
+          <Text style={styles.name}>{user.name}</Text>
+          <Text style={styles.position}>{user.position}</Text>
 
-        {/* { Connect Button } */}
-        <Pressable onPress={onConnect} style={styles.button}>
-          <Text style={styles.buttonText}>Connect</Text>
-        </Pressable>
+          {/* { Connect Button } */}
+          <Pressable onPress={onConnect} style={styles.button}>
+            <Text style={styles.buttonText}>Connect</Text>
+          </Pressable>
         </View>
       </View>
 
@@ -49,79 +54,70 @@ export default function UserProfile() {
       </View>
 
       {/* { Experience } */}
-    </View>
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Experience</Text>
+        {user.experience?.map((experience) => (
+          <ExperienceListItem key={experience.id} experience={experience} />
+        ))}
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-
-  },
+  container: {},
   header: {
-    backgroundColor: 'white', 
-
+    backgroundColor: "white",
+    marginBottom: 5, 
   },
   backImage: {
-    width: '100%',
+    width: "100%",
     aspectRatio: 5 / 2,
-    marginBottom: -60, 
-
-
+    marginBottom: -60,
   },
 
   headerContent: {
     padding: 10,
-    paddingTop: 0, 
-  }, 
+    paddingTop: 0,
+  },
 
   image: {
     width: 120,
     aspectRatio: 1,
-    borderRadius: 60, 
-    borderWidth: 3, 
-    borderColor: 'white',
-
+    borderRadius: 60,
+    borderWidth: 3,
+    borderColor: "white",
   },
 
   name: {
     fontSize: 24,
-    fontWeight: '500', 
+    fontWeight: "500",
   },
 
-  position: {
-
-  },
+  position: {},
 
   button: {
-    backgroundColor: 'royalblue',
+    backgroundColor: "royalblue",
     padding: 10,
-    alignItems: 'center',
+    alignItems: "center",
     borderRadius: 50,
-    marginVertical: 10, 
-
+    marginVertical: 10,
   },
   buttonText: {
-    color: 'white',
-    fontWeight: '600', 
+    color: "white",
+    fontWeight: "600",
   },
 
   section: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     padding: 10,
-    marginVertical: 10, 
-
+    marginVertical: 5,
   },
   sectionTitle: {
-    fontSize: 18, 
-    fontWeight: '600',
-     
+    fontSize: 18,
+    fontWeight: "600",
   },
   paragraph: {
-    lineHeight: 20, 
-    
+    lineHeight: 20,
   },
-
-
-
-
 });
