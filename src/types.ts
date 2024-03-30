@@ -11,4 +11,7 @@ export type User = {
     name: string;
     position: string;
     image?: string; 
+    backImage?: string;
+    about?: string; 
+    
 };
