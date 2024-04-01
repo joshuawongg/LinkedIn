@@ -1,0 +1,4 @@
+configurationset:
+  - configuration:
+      name: postgresql_config
+      uri: postgresql://ep-patient-art-a4wx58m2.us-east-1.aws.neon.tech/linkedin?user=linkedin_owner&password=HRQXBU6jhzW4
