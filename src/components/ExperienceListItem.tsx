@@ -1,4 +1,5 @@
 import { Experience } from "@/types";
+
 import { Text, View, Image, StyleSheet } from "react-native";
 
 type ExperienceListItemProps = {
@@ -10,7 +11,7 @@ export default function ExperienceListItem({
 }: ExperienceListItemProps) {
   return (
     <View style={styles.container}>
-      <Image source={{uri:experience.companyImage}} style={styles.image} />
+      <Image source={{ uri: experience.companyImage }} style={styles.image} />
       <View>
         <Text style={styles.title}>{experience.title}</Text>
         <Text>{experience.companyName}</Text>
@@ -21,24 +22,21 @@ export default function ExperienceListItem({
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     padding: 5,
-    marginBottom: 10, 
-    paddingBottom: 10, 
+    marginBottom: 10,
+    paddingBottom: 10,
     borderBottomWidth: 0.5,
-    borderColor: 'lightgrey',
-
+    borderColor: "lightgrey",
   },
   image: {
     width: 50,
-    aspectRatio: 1, 
+    aspectRatio: 1,
     marginRight: 5,
-
   },
   title: {
     fontSize: 16,
-    fontWeight: '500',
-
+    fontWeight: "500",
   },
 });

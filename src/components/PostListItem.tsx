@@ -27,29 +27,32 @@ export default function PostListItem({ post }: PostListItemProps) {
   return (
     <Link href={`/posts/${post.id}`} asChild>
       <Pressable style={styles.container}>
-        {/* {Header} */}
-        <Link href={`/users/${post.author.id}`} asChild >
-        <Pressable style={styles.header}>
-          <Image source={{ uri: post.author.image }} style={styles.userImage} />
-          <View>
-            <Text style={styles.userName}>{post.author.name}</Text>
-            <Text>{post.author.position}</Text>
-          </View>
-        </Pressable>
+        {/* Header */}
+        <Link href={`/users/${post.profile.id}`} asChild>
+          <Pressable style={styles.header}>
+            <Image
+              source={{ uri: post.profile.image }}
+              style={styles.userImage}
+            />
+            <View>
+              <Text style={styles.userName}>{post.profile.name}</Text>
+              <Text>{post.profile.position}</Text>
+            </View>
+          </Pressable>
         </Link>
 
-        {/* {Text content} */}
+        {/* Text content */}
         <Text style={styles.content}>{post.content}</Text>
 
-        {/* {Image content} */}
+        {/* Image content */}
         {post.image && (
           <Image source={{ uri: post.image }} style={styles.postImage} />
         )}
 
-        {/* {Footer} */}
+        {/* Footer */}
         <View style={styles.footer}>
-          <FooterButton text="Likes" icon="thumbs-o-up" />
-          <FooterButton text="Comments" icon="comment-o" />
+          <FooterButton text="Like" icon="thumbs-o-up" />
+          <FooterButton text="Comment" icon="comment-o" />
           <FooterButton text="Share" icon="share" />
         </View>
       </Pressable>
@@ -58,13 +61,11 @@ export default function PostListItem({ post }: PostListItemProps) {
 }
 
 const styles = StyleSheet.create({
-  
   container: {
     backgroundColor: "white",
-    width: '100%',
-    maxWidth: 500, 
-    alignSelf: 'center', 
-
+    width: "100%",
+    maxWidth: 500,
+    alignSelf: "center",
   },
   // Header
   header: {
