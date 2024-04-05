@@ -45,6 +45,7 @@ export default function HomeFeedScreen() {
   // fetchMore function on useQuery hook re executes the same query with same variables by default
   // Can also override variables on re executing the query
   // Changing the after variable to continue querying the db for more posts
+  
   const loadMore = async () => {
     if (!hasMore) {
       return;
