@@ -16,6 +16,7 @@ import AuthScreen from "@/components/auth/AuthScreen";
 import * as SecureStore from "expo-secure-store";
 import UserContextProvider, { useUserContext } from "@/context/UserContext";
 import SetupProfileScreen from "@/components/auth/SetupProfileScreen";
+import { ActivityIndicator } from "react-native";
 
 const CLERK_PUBLISHABLE_KEY =
   process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY || "";
@@ -96,9 +97,14 @@ function RootLayoutNavWithProviders() {
 }
 
 function RootLayoutNav() {
-  const { dbUser, authUser } = useUserContext();
+  const { dbUser, authUser, loading } = useUserContext();
   console.log(authUser);
   console.log(dbUser);
+
+  if (loading) {
+    return <ActivityIndicator />
+  }
+
   return (
     <>
       <SignedIn>

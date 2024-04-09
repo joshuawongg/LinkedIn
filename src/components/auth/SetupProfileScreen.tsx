@@ -25,7 +25,7 @@ const SetupProfileScreen = () => {
   const [name, setName] = useState("");
   const [about, setAbout] = useState("");
 
-  const { authUser } = useUserContext(); 
+  const { authUser, reloadDbUser } = useUserContext(); 
 
   const [handleMutation, { loading }] = useMutation(createProfileMutation);
 
@@ -38,6 +38,7 @@ const SetupProfileScreen = () => {
           authid: authUser.id,
         },
       });
+      reloadDbUser()
     } catch (e) {
       console.log(e);
     }
