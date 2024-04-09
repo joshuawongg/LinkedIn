@@ -38,7 +38,7 @@ const postPaginatedList = gql`
 
 export default function HomeFeedScreen() {
   const [hasMore, setHasMore] = useState(true);
-  const { loading, error, data, fetchMore } = useQuery(postPaginatedList, {
+  const { loading, error, data, fetchMore, refetch } = useQuery(postPaginatedList, {
     variables: { first: 6 },
   });
 
@@ -75,6 +75,9 @@ export default function HomeFeedScreen() {
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{ gap: 10 }}
       onEndReached={loadMore}
+      refreshing={loading}
+      onRefresh={refetch}
+
       // List footer component for manually rendering load more
 
       //   ListFooterComponent={() => (
