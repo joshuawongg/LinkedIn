@@ -201,7 +201,7 @@ type Query {
       type: "postgresql"
       schema: "public"
       query: """
-      SELECT "about", "authid", "backimage", "id", "image", "name", "position" FROM "profile" WHERE name ILIKE "$1" OR position ILIKE "$1"
+      SELECT "about", "authid", "backimage", "id", "image", "name", "position" FROM "profile" WHERE name ILIKE $1 OR position ILIKE $1
       """
       configuration: "postgresql_config"
     )
